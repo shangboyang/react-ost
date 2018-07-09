@@ -61,9 +61,6 @@ module.exports = inquirer.prompt(question).then(({
       process.exit()
     }
 
-    // spinner.stop()
-    // console.log(chalk.green(`New project has been initialized successfully!`))
-
     fs.readFile(`./${project}/package.json`, 'utf8', function (err, data) {
       if (err) {
         spinner.stop();
