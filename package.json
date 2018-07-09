@@ -9,7 +9,7 @@
   "bin": {
     "react-ost": "./bin/ost.js"
   },
-  "author": "",
+  "author": "Boyang Shang",
   "license": "ISC",
   "devDependencies": {
     "bluebird": "^3.5.1",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "download-git-repo": "^1.0.2",
+    "fs": "0.0.1-security",
     "inquirer": "^6.0.0",
     "inquirer-select-line": "^1.1.1",
     "ora": "^2.1.0"

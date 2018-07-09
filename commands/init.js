@@ -27,6 +27,14 @@ const question = [{
       }
       return 'Project name is required!'
     }
+  }, {
+    type: 'input',
+    name: 'author',
+    message: 'Project author:',
+  }, {
+    type: 'input',
+    name: 'description',
+    message: 'Project description:',
   }
 ]
 
@@ -34,7 +42,7 @@ module.exports = inquirer.prompt(question).then(({
   tpl,
   project
 }) => {
-  console.log('tpl::: ', tpl, ' Project::: ', project);
+  // console.log('tpl::: ', tpl, ' Project::: ', project);
 
   const csrFlag = tpl === 'Client-Side-Render'
   const csrRepo = `shangboyang/react-orcrist#master`
@@ -52,8 +60,39 @@ module.exports = inquirer.prompt(question).then(({
       console.log(chalk.red(err))
       process.exit()
     }
-    spinner.stop()
-    console.log(chalk.green(`New project has been initialized successfully!`))
+
+    // spinner.stop()
+    // console.log(chalk.green(`New project has been initialized successfully!`))
+
+    fs.readFile(`./${project}/package.json`, 'utf8', function (err, data) {
+      if (err) {
+        spinner.stop();
+        console.error(err);
+        return;
+      }
+      const packageJson = JSON.parse(data);
+      packageJson.name = project;
+      packageJson.description = description;
+      packageJson.author = author;
+      const updatePackageJson = JSON.stringify(packageJson, null, 2);
+
+      fs.writeFile(`./${project}/package.json`, updatePackageJson, 'utf8', function (err) {
+        if (err) {
+          spinner.stop();
+          console.error(err);
+          return;
+        } else {
+          spinner.stop();
+          console.log(chalk.green(`New project has been initialized successfully!`))
+          console.log(`
+              ${chalk.bgWhite.black('   Run Application  ')}
+              ${chalk.yellow(`cd ${name}`)}
+              ${chalk.yellow('npm install')}
+              ${chalk.yellow('npm start')}
+            `);
+        }
+      });
+
+    });
   })
-  
 })
