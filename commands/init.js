@@ -1,8 +1,7 @@
 const inquirer = require('inquirer')
-const rm = require('rimraf').sync;
-const {
-  writeFile
-} = require('fs')
+const shelljs = require('shelljs')
+// const rm = require('rimraf').sync;
+const fs = require('fs')
 const {
   resolve
 } = require('path')
@@ -10,6 +9,7 @@ const chalk = require('chalk')
 const download = require('download-git-repo')
 const ora = require('ora')
 
+console.log(`${chalk.yellow(`Installing packages...`)}This might tabe a couple of minutes.`);
 
 const question = [{
     type: 'list',
@@ -23,8 +23,13 @@ const question = [{
     choices: ["Choice A", "choice B"],
     validate(val) {
       if (val !== '') {
+        console.log(fs.readdir(`./${val}`, arr=> {
+          console.log(arr)
+        }))
+        
         return true
-      }
+      } 
+
       return 'Project name is required!'
     }
   }, {
@@ -40,9 +45,10 @@ const question = [{
 
 module.exports = inquirer.prompt(question).then(({
   tpl,
-  project
+  project,
+  author,
+  description,
 }) => {
-  // console.log('tpl::: ', tpl, ' Project::: ', project);
 
   const csrFlag = tpl === 'Client-Side-Render'
   const csrRepo = `shangboyang/react-orcrist#master`
@@ -50,11 +56,13 @@ module.exports = inquirer.prompt(question).then(({
 
   const spinner = ora('Downloading template...')
 
+  // shelljs.rm('-rf', `./${project}`) // 删除当前创建目录
   spinner.start()
   /**
    * @argument 下载路径
    * @argument 目标路径
    */
+  /*
   download(csrFlag ? csrRepo : ssrRepo, `./${project}`, (err) => {
     if (err) {
       console.log(chalk.red(err))
@@ -83,13 +91,19 @@ module.exports = inquirer.prompt(question).then(({
           console.log(chalk.green(`New project has been initialized successfully!`))
           console.log(`
               ${chalk.bgWhite.black('   Run Application  ')}
-              ${chalk.yellow(`cd ${name}`)}
+              ${chalk.yellow(`cd ${project}`)}
               ${chalk.yellow('npm install')}
               ${chalk.yellow('npm start')}
             `);
         }
       });
 
+      console.log(`${chalk.yellow(`Installing packages...`)}`);
+      console.log(`${chalk.yellow(`This might take a couple of minutes...`)}`);
+      
+
     });
   })
+
+  */
 })
