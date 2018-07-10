@@ -84,7 +84,7 @@ module.exports = inquirer.prompt(question).then(({
           console.error(`${chalk.red(err)}`);
           return;
         } else {
-
+          console.log(`${chalk.yellow(` `)}`);
           console.log(`${chalk.yellow(`Installing packages...`)}`);
           console.log(`${chalk.yellow(`This might take a couple of minutes...`)}`);
 
@@ -97,15 +97,15 @@ module.exports = inquirer.prompt(question).then(({
           }
 
           spinner.stop();
+
           console.log(chalk.green(`New project has been initialized successfully!`))
-          /*
+         
           console.log(`
               ${chalk.bgWhite.black('   Run Application  ')}
               ${chalk.yellow(`cd ${project}`)}
-              ${chalk.yellow('npm install')}
-              ${chalk.yellow('npm start')}
+              ${chalk.yellow('npm run dev')}
             `);
-          */
+
         }
       });
 
