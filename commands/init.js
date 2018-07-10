@@ -1,5 +1,5 @@
 const inquirer = require('inquirer')
-const shelljs = require('shelljs')
+const shell = require('shelljs')
 // const rm = require('rimraf').sync;
 const fs = require('fs')
 const {
@@ -23,13 +23,11 @@ const question = [{
     choices: ["Choice A", "choice B"],
     validate(val) {
       if (val !== '') {
-        console.log(fs.readdir(`./${val}`, arr=> {
-          console.log(arr)
-        }))
-        
+        if (fs.existsSync(`./${val}`)) {
+          return `The folder '${val}' has existed, please change it for another!`
+        }
         return true
       } 
-
       return 'Project name is required!'
     }
   }, {
@@ -61,7 +59,7 @@ module.exports = inquirer.prompt(question).then(({
    * @argument 下载路径
    * @argument 目标路径
    */
-  /*
+ 
   download(csrFlag ? csrRepo : ssrRepo, `./${project}`, (err) => {
     if (err) {
       console.log(chalk.red(err))
@@ -83,26 +81,38 @@ module.exports = inquirer.prompt(question).then(({
       fs.writeFile(`./${project}/package.json`, updatePackageJson, 'utf8', function (err) {
         if (err) {
           spinner.stop();
-          console.error(err);
+          console.error(`${chalk.red(err)}`);
           return;
         } else {
+
+          console.log(`${chalk.yellow(`Installing packages...`)}`);
+          console.log(`${chalk.yellow(`This might take a couple of minutes...`)}`);
+
+          if (!shell.which('npm')) {
+            shell.echo('Sorry, this script requires npm');
+            shell.exit(1);
+          } else {
+            shell.cd(`./${project}`)
+            shell.exec('npm i')
+          }
+
           spinner.stop();
           console.log(chalk.green(`New project has been initialized successfully!`))
+          /*
           console.log(`
               ${chalk.bgWhite.black('   Run Application  ')}
               ${chalk.yellow(`cd ${project}`)}
               ${chalk.yellow('npm install')}
               ${chalk.yellow('npm start')}
             `);
+          */
         }
       });
 
-      console.log(`${chalk.yellow(`Installing packages...`)}`);
-      console.log(`${chalk.yellow(`This might take a couple of minutes...`)}`);
+      
       
 
     });
   })
 
-  */
 })
