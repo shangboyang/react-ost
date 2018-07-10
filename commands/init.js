@@ -56,7 +56,6 @@ module.exports = inquirer.prompt(question).then(({
 
   const spinner = ora('Downloading template...')
 
-  // shelljs.rm('-rf', `./${project}`) // 删除当前创建目录
   spinner.start()
   /**
    * @argument 下载路径
