@@ -9,7 +9,7 @@ Create React apps with no build configuration. It include:
 ```sh
 npm i -g react-ost
 react-ost init
-cd [your-app]
+cd [my-app]
 npm run dev
 ```
 
@@ -37,24 +37,36 @@ my-app
 
 ```
 
-## Server-Side-Render Bolierplate
+## Server-Side-Render Bolierplate 
+It will create a directory called `my-app` inside the current folder. 
+Project structure:
 ```
 my-app
-├── README.md
+├── build
+│   ├── webpack.dev.config.js
+│   └── webpack.prod.config.js
+├── client
+│   ├── components
+│   ├── config
+│   ├── containers
+│   ├── css
+│   ├── utils
+│   ├── index.tpl.html
+│   └── app.js
+├── server
+│   ├── middlewares
+│   ├── routes
+│   ├── app.js
+│   ├── server.dev.js
+│   └── server.prod.js
+├── views
+│   ├── dev
+│   └── prod
+├── dist
 ├── node_modules
-├── package.json
+├── postcss.config.js
 ├── .gitignore
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   └── manifest.json
-└── src
-    ├── App.css
-    ├── App.js
-    ├── App.test.js
-    ├── index.css
-    ├── index.js
-    ├── logo.svg
-    └── registerServiceWorker.js
-
+├── .editorconfig
+├──  README.md
+└── package.json
 ```
