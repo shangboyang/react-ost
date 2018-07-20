@@ -1,6 +1,6 @@
 {
   "name": "react-ost",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,14 @@
   "bin": {
     "react-ost": "./bin/ost.js"
   },
+  "keywords": [
+    "react",
+    "cli",
+    "es6",
+    "js",
+    "ost",
+    "orcrist"
+  ],
   "author": "Boyang Shang",
   "license": "ISC",
   "devDependencies": {
