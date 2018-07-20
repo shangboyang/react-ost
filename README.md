@@ -15,30 +15,43 @@ npm run dev
 
 Then open http://localhost:7706/ to see your app.
 
-## Client-Side-Render Bolierplate
+
+
+## Bolierplate 
+It will create a directory called `my-app` inside the current folder. 
+
+#### client-side-render template
+Project structure:
 ```
 my-app
-├── README.md
+├── app
+│   ├── components
+│   ├── config
+│   ├── containers
+│   ├── css
+│   ├── utils
+│   └── app.js
+└── build
+│   ├── build.js
+│   ├── dev-client.js
+│   ├── dev-server.js
+│   ├── webpack.base.config.js
+│   ├── webpack.dev.config.js
+│   └── webpack.prod.config.js
+├── dist
+├── .babelrc
+├── .eslintignore
+├── .eslintrc.js
+├── index.html
 ├── node_modules
-├── package.json
+├── server.js
 ├── .gitignore
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   └── manifest.json
-└── src
-    ├── App.css
-    ├── App.js
-    ├── App.test.js
-    ├── index.css
-    ├── index.js
-    ├── logo.svg
-    └── registerServiceWorker.js
-
+├── .editorconfig
+├──  README.md
+└── package.json
 ```
 
-## Server-Side-Render Bolierplate 
-It will create a directory called `my-app` inside the current folder. 
+#### server-side-render template
 Project structure:
 ```
 my-app
