@@ -49,7 +49,7 @@ module.exports = inquirer.prompt(question).then(({
 }) => {
 
   const csrFlag = tpl === 'Client-Side-Render'
-  const csrRepo = `shangboyang/react-orcrist#master`
+  const csrRepo = `shangboyang/react-orcrist#webpack4`
   const ssrRepo = `shangboyang/react-ost-universal#master`
 
   const spinner = ora('Downloading template...')

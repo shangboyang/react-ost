@@ -24,7 +24,7 @@ It will create a directory called `my-app` inside the current folder.
 Project structure:
 ```
 my-app
-├── app
+├── src
 │   ├── components
 │   ├── config
 │   ├── containers
