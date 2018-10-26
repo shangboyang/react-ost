@@ -15,12 +15,12 @@ const question = [{
     type: 'list',
     message: 'Please select a boilerplate-project:',
     name: 'tpl',
-    choices: ['Client-Side-Render', 'Server-Side-Render'],
+    choices: ['Client-Side-Render', 'Client-Side-Render(china-cdn ver.)', 'Server-Side-Render'],
   }, {
     type: 'input',
     name: 'project',
     message: 'Project name:',
-    choices: ["Choice A", "choice B"],
+    // choices: ["Choice A", "choice B"],
     validate(val) {
       if (val !== '') {
         if (fs.existsSync(`./${val}`)) {
@@ -47,10 +47,22 @@ module.exports = inquirer.prompt(question).then(({
   author,
   description,
 }) => {
-
-  const csrFlag = tpl === 'Client-Side-Render'
-  const csrRepo = `shangboyang/react-orcrist#webpack4`
-  const ssrRepo = `shangboyang/react-ost-universal#master`
+  let repo;
+  switch (true) {
+    case !!(tpl === `Client-Side-Render`):
+      repo = `shangboyang/react-orcrist#webpack4`
+      break;
+    case !!(tpl === `Client-Side-Render(china-cdn ver.)`):
+      repo = `shangboyang/react-orcrist#cdn`
+      break;
+    case !!(tpl === `Server-Side-Render`):
+      repo = `shangboyang/react-ost-universal#master`
+      break;
+  }
+  // const csrFlag = tpl === 'Client-Side-Render'
+  // const csrRepo = `shangboyang/react-orcrist#webpack4`
+  // const csr2Repo = `shangboyang/react-orcrist#cdn`
+  // const ssrRepo = `shangboyang/react-ost-universal#master`
 
   const spinner = ora('Downloading template...')
 
@@ -60,7 +72,7 @@ module.exports = inquirer.prompt(question).then(({
    * @argument 目标路径
    */
  
-  download(csrFlag ? csrRepo : ssrRepo, `./${project}`, (err) => {
+  download(repo, `./${project}`, (err) => {
     if (err) {
       console.log(chalk.red(err))
       process.exit()

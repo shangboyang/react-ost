@@ -15,7 +15,10 @@ npm run dev
 
 Then open http://localhost:7706/ to see your app.
 
-
+## Logs
+```sh
+2018-10-27 Client-side-render add cdn-ver.
+```
 
 ## Bolierplate 
 It will create a directory called `my-app` inside the current folder. 
