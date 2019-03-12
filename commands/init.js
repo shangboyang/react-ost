@@ -56,7 +56,7 @@ module.exports = inquirer.prompt(question).then(({
       repo = `shangboyang/react-orcrist#cdn`
       break;
     case !!(tpl === `Server-Side-Render`):
-      repo = `shangboyang/react-ost-universal#master`
+      repo = `shangboyang/react-ost-universal#webpack4`
       break;
   }
   // const csrFlag = tpl === 'Client-Side-Render'
